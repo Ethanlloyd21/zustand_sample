@@ -11,11 +11,12 @@ app.use(cors());
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-app.get('/pokemon/ditto', async (req, res) => {
+app.get('/pokemon/all', async (req, res) => {
   try {
     // Make a request to the Star Wars API and return the result
    
-    const response = await axios.get('https://pokeapi.co/api/v2/pokemon/ditto');
+    // const response = await axios.get('https://pokeapi.co/api/v2/pokemon/ditto');
+    const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=150&offset=0');
     res.json(response.data);
   } catch (error) {
     console.log(error);
