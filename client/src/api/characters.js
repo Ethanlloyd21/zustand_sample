@@ -19,3 +19,14 @@ export const getAllPokemon = () => axiosInstance.get("/pokemon/all");
 // export const createUser = (name) => {
 //   return axios.post("http://localhost:3004/users", { name });
 // };
+
+export const testFetch = async() => {
+    try {
+      const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=150&offset=0');
+      return response.data;
+    } catch (error) {
+      throw error
+    }
+   
+ 
+}

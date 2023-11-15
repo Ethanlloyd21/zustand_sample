@@ -3,15 +3,27 @@ import "react-tabulator/lib/styles.css"; // required styles
 import "react-tabulator/lib/css/tabulator.min.css"; // theme
 import { ReactTabulator } from "react-tabulator";
 import { useUsersStore } from "../stores/useStore";
+import { testFetch } from "../api/characters";
 
 
 
 const Table = () => {
-  const characters = useUsersStore((state) => state.data);
-  const getAllCharacters = useUsersStore((state) => state.getAllCharacters);
+  const { characters, setData, getAllCharacters } = useUsersStore((state) => state);
 
   useEffect(() => {
-    getAllCharacters();
+    // getAllCharacters();
+
+
+    const fetchData = async () => {
+      try {
+        const res = await testFetch();
+        setData(res.results);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+
   }, []);
 
   console.log(characters);
